@@ -16,6 +16,8 @@ import { ListComponent } from './products/list/list.component';
 import { CatalogComponent } from './products/catalog/catalog.component';
 import { SearchComponent } from './products/search/search.component';
 import { MfaComponent } from './auth/mfa/mfa.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { MfaComponent } from './auth/mfa/mfa.component';
     ListComponent,
     CatalogComponent,
     SearchComponent,
-    MfaComponent        
+    MfaComponent,
+    HeaderComponent,
+    FooterComponent        
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
