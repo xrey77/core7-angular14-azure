@@ -6,6 +6,7 @@ using core7_angular14_azure.Helpers;
 
 namespace core7_angular14_azure.Controllers.Products
 {
+    [ApiExplorerSettings(GroupName = "List All Products")]
     [ApiController]
     [Route("[controller]")]
     public class ListController : ControllerBase {

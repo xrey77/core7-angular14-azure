@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace core7_angular14_azure.Controllers.Users
 {
+    [ApiExplorerSettings(GroupName = "Update User")]
     [ApiController]
     [Route("[controller]")]
     [Authorize]

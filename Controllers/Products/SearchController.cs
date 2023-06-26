@@ -7,6 +7,7 @@ using core7_angular14_azure.Models;
 
 namespace core7_angular14_azure.Controllers.Products
 {
+    [ApiExplorerSettings(GroupName = "Search Product Description")]
     [ApiController]
     [Route("[controller]")]
     public class SearchController : ControllerBase {

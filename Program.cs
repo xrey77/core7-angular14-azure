@@ -2,19 +2,38 @@ using System.Text;
 using core7_angular14_azure.Helpers;
 using core7_angular14_azure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-// Add services to the container.
 builder.Services.AddDbContext<DataDbContext>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "QATAR FOUNDATION", Description="Rest API Documentation", Version = "v1" });
+        c.TagActionsBy(api =>
+            {
+                if (api.GroupName != null)
+                {
+                    return new[] { api.GroupName };
+                }
 
-builder.Services.AddSwaggerGen();
+                var controllerActionDescriptor = api.ActionDescriptor as ControllerActionDescriptor;
+                if (controllerActionDescriptor != null)
+                {
+                    return new[] { controllerActionDescriptor.ControllerName };
+                }
+
+                throw new InvalidOperationException("Unable to determine tag for endpoint.");
+            });
+        c.DocInclusionPredicate((name, api) => true);        
+    });
 builder.Services.AddSpaStaticFiles(options => { options.RootPath = "clientapp/dist"; });
 builder.Services.AddRazorPages();
 
@@ -44,9 +63,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "");
+    });    
     app.UseHsts();    
-    app.UseDeveloperExceptionPage();
 }
 
 // ==========VALIDATE IF END POINT IS AUTHORIZED================
@@ -68,8 +89,7 @@ app.UseStatusCodePages(async context =>
         }
     });
 //============================================================
-
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseRouting();
 app.UseSpaStaticFiles();
 app.UseAuthorization();

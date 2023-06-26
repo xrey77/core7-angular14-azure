@@ -12,6 +12,7 @@ using System.Text;
 namespace core7_angular14_azure.Controllers.Auth
 {
     
+[ApiExplorerSettings(GroupName = "Sign-in to User Account")]
 [ApiController]
 [Route("[controller]")]
 public class LoginController : ControllerBase
@@ -49,7 +50,7 @@ public class LoginController : ControllerBase
                  User xuser = _authService.SignUser(model.Username, model.Password);
                  if (xuser != null) {
                     // var token = _jwttokenservice.Authenticate(xuser).Token;
-                var tokenHandler = new JwtSecurityTokenHandler();
+                    var tokenHandler = new JwtSecurityTokenHandler();
                     var xkey = _configuration["AppSettings:Secret"];
                     var key = Encoding.ASCII.GetBytes(xkey);
 

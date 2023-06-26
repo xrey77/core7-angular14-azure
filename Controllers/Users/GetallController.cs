@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace core7_angular14_azure.Controllers.Users
 {
+    [ApiExplorerSettings(GroupName = "List All Users")]
     [ApiController]
     [Route("[controller]")]
     [Authorize]

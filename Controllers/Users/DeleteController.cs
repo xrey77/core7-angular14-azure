@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace core7_angular14_azure.Controllers.Users
 {
+    [ApiExplorerSettings(GroupName = "Delete User")]
     [ApiController]
     [Route("[controller]")]
     [Authorize]

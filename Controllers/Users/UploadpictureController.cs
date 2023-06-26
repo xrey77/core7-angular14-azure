@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace core7_angular14_azure.Controllers.Users
 {
+    [ApiExplorerSettings(GroupName = "Upload User Image")]
     [ApiController]
     [Route("[controller]")]    
     [Authorize]

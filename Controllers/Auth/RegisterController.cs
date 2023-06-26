@@ -7,6 +7,7 @@ using core7_angular14_azure.Helpers;
 
 namespace core7_angular14_azure.Controllers.Auth
 {
+[ApiExplorerSettings(GroupName = "Sign-up or Account Registration")]
 [ApiController]
 [Route("[controller]")]
 public class RegisterController : ControllerBase

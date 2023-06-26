@@ -11,6 +11,7 @@ namespace core7_angular14_azure.Services
     public interface IProductService {
         IEnumerable<Product> ListAll(int page);
         IEnumerable<Product> SearchAll(string key);
+        IEnumerable<Product> Dataset();
 
         int TotPage();
     }
@@ -56,6 +57,12 @@ namespace core7_angular14_azure.Services
             var columnName = "descriptions";
             var columnValue = new SqlParameter("columnValue", "%" + key + "%");
             var products = _context.Products.FromSqlRaw($"SELECT * FROM [Products] WHERE {columnName} LIKE @columnValue", columnValue).ToList();
+            return products;
+        }
+
+        public IEnumerable<Product> Dataset()
+        {
+            var products = _context.Products.ToList();
             return products;
         }
     }

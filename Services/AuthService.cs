@@ -26,7 +26,10 @@ namespace core7_angular14_azure.Services
         .AddEnvironmentVariables()
         .Build();
 
-        public AuthService(DataDbContext context,IOptions<AppSettings> appSettings)
+        public AuthService(
+            DataDbContext context,
+            IOptions<AppSettings> appSettings
+            )
         {
             _context = context;
             _appSettings = appSettings.Value;
@@ -34,7 +37,7 @@ namespace core7_angular14_azure.Services
 
         public User SignupUser(User userdata, string passwd)
         {
-
+            
             User xusermail = _context.Users.Where(c => c.Email == userdata.Email).FirstOrDefault();
             if (xusermail != null) {
                 throw new AppException("Email Address was already taken...");

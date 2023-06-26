@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace core7_angular14_azure.Controllers.Users
 {
+    [ApiExplorerSettings(GroupName = "Enable or Disable 2-Factor Authentication")]
     [ApiController]
     [Route("[controller]")]
     [Authorize]

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace core7_angular14_azure.Controllers.Auth
 {
+    [ApiExplorerSettings(GroupName = "Validate OTP Code from Authenticator App")]
     [ApiController]
     [Route("[controller]")]
     public class OtpController : ControllerBase {
